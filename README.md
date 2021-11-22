@@ -50,18 +50,18 @@ other than the US dollar.
 • service locations: Alset service locations each handle some subset of the set of Alset vehicle models.
 For those models, the service location provides the following services:  
 
-    – Repair: Alset repairs only its own vehicles. (Sorry, you can’t bring your Tesla here.). Each
-    location repairs only those models that it handles.  
+– Repair: Alset repairs only its own vehicles. (Sorry, you can’t bring your Tesla here.). Each
+location repairs only those models that it handles.  
 
-    – Recalls.  
+– Recalls.  
 
-    – New vehicle delivery: new vehicles are shipped to a service location for customer pickup.
-    – Showroom: a limited inventory of vehicles for display purposes and for test drives. These vehicles
-    are not offered for sale. When a vehicle goes off of display/test-drive status, it goes into the
-    used-vehicle fleet.  
+– New vehicle delivery: new vehicles are shipped to a service location for customer pickup.
+– Showroom: a limited inventory of vehicles for display purposes and for test drives. These vehicles
+are not offered for sale. When a vehicle goes off of display/test-drive status, it goes into the
+used-vehicle fleet.  
 
-    – Used vehicles: a collection of used Alset vehicles available for sale. Alset does not sell used vehicles
-    made by other manufacturers.  
+– Used vehicles: a collection of used Alset vehicles available for sale. Alset does not sell used vehicles
+made by other manufacturers.  
       
 
 
@@ -103,12 +103,12 @@ and the total cost.
 
 Customers:  
 
-    Should have the least access to general data. Customers should only need to access and edit personal information, such as card data, user profile data and vehicle data. They should be able to view information such as prices, vehicle info, and service locations.
+Should have the least access to general data. Customers should only need to access and edit personal information, such as card data, user profile data and vehicle data. They should be able to view information such as prices, vehicle info, and service locations.
 
 Store managers:  
 
-    Store managers should be able to view all corperate information, but only edit information pertaining to their stores.
+Store managers should be able to view all corperate information, but only edit information pertaining to their stores.
 
 Product managers:  
 
-    Product managers should be able to view all corperate information, but only edit information pertaining to vehicles and models.
+Product managers should be able to view all corperate information, but only edit information pertaining to vehicles and models.
