@@ -1,0 +1,2 @@
+Main-Class: AlsetEnterpriseMain
+Class-Path: ojdbc8.jar
