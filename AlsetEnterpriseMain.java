@@ -61,18 +61,25 @@ public class AlsetEnterpriseMain {
                         }
                         switch(c1){
                             case 1:
+                                a.viewCustomer();
                             break;
                             case 2:
+                                a.editCustomer();
                             break;
                             case 3:
+                                a.viewCard();
                             break;
                             case 4:
+                                a.editCard();
                             break;
                             case 5:
+                                a.viewVehicle();
                             break;
                             case 6:
+                                a.viewAllServiceLocations();
                             break;
                             case 7:
+                                a.viewAllModel();
                             break;
                         }
                     }while(run1 == 0);
@@ -89,47 +96,55 @@ public class AlsetEnterpriseMain {
                     //store manager menu here
                      System.out.println("Hello Store Manager! What can we help you with?\n" 
                           + "1: View all customers \n" //view cards per customer inside 
-                          + "3: View prices \n"
-                          + "4: Edit prices \n" //edit prices if new repairs are added
-                          + "5: View repairs \n"
-                          + "6: Edit repairs \n" //managers can add aviable repairs, if they hire a new employee who can handle a new repair type
-                          + "7: View all Alset models \n" //inside add option to see model options as well
-                          + "8: View Showroom information \n"
-                          + "9: Edit Showroom information \n"
-                          + "10: View service location information \n"
-                          + "11: Edit Showroom information \n" 
-                          + "12: Exit \n" );
+                          + "2: View prices \n"
+                          + "3: Edit prices \n" //edit prices if new repairs are added
+                          + "4: View repairs \n"
+                          + "5: Edit repairs \n" //managers can add aviable repairs, if they hire a new employee who can handle a new repair type
+                          + "6: View all Alset models \n" //inside add option to see model options as well
+                          + "7: View Showroom information \n"
+                          + "8: Edit Showroom information \n"
+                          + "9: View service location information \n"
+                          + "10: Edit service location information \n" 
+                          + "11: Exit \n" );
                      while (!s.hasNextInt()) {
                          String input = s.next();
-                         System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-12*");
+                         System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-11*");
                      }
                      int c2 = s.nextInt();
-                     if(c2 == 12){
+                     if(c2 == 11){
                          run1 = 1;
                          break;
                      }
                      switch(c2){
                          case 1:
+                            a.viewAllCustomer();
                          break;
                          case 2:
+                            a.viewAllPrice();
                          break;
                          case 3:
+                            a.editPrice();
                          break;
                          case 4:
+                            a.viewAllRepairs();
                          break;
                          case 5:
+                            a.editRepairs();
                          break;
                          case 6:
+                            a.viewAllModel();
                          break;
                          case 7:
+                            a.viewAllShowroom();
                          break;
                          case 8:
+                            a.editShowroom();
                          break;
                          case 9:
+                            a.viewAllServiceLocations();
                          break;
                          case 10:
-                         break;
-                         case 11:
+                            a.editServiceLocations();
                          break;
                      }
                  }while(run2 == 0);
@@ -166,27 +181,38 @@ public class AlsetEnterpriseMain {
                          break;
                      }
                      switch(c3){
-                         case 1:
-                         break;
-                         case 2:
-                         break;
-                         case 3:
-                         break;
-                         case 4:
-                         break;
-                         case 5:
-                         break;
-                         case 6:
-                         break;
-                         case 7:
-                         break;
+                        case 1:
+                            a.viewAllCustomer();
+                        break;
+                        case 2:
+                            a.viewAllPrice();
+                        break;
+                        case 3:
+                            a.editPrice();
+                        break;
+                        case 4:
+                            a.viewAllRepairs();
+                        break;
+                        case 5:
+                            a.editRepairs();
+                        break;
+                        case 6:
+                            a.viewAllModel();
+                        break;
+                        case 7:
+                            a.editModel();
+                        break;
                          case 8:
+                            a.viewAllShowroom();
                          break;
                          case 9:
+                            a.viewAllServiceLocations();
                          break;
                          case 10:
+                            a.issue_maintenance();
                          break;
                          case 11:
+                            a.issue_recall();
                          break;
                      }
                  }while(run3 == 0);

@@ -508,12 +508,13 @@ public class AlsetMethods {
                         System.out.println();
         
                         while(answer.next()){
-                            System.out.println( "Card number: " + answer.getString("card_number") + " \nExpiration: " + answer.getString("expiration") 
-                            + " \nZip: " + answer.getString("zip") + " \nSecuirty Code: " + answer.getString("security_code") + " \n" 
+                            System.out.println("Vehicle ID: " + answer.getString("vehicle_id") + " \nVehicle sales: " + answer.getString("sales") 
+                            + " \nModel ID: " + answer.getString("model_id_fk") + " \nMaintenance Status: " + answer.getString("maintenance") 
+                            + " \nRecall status: " + answer.getString("recall_status") + " \nCustomer ID: " + answer.getString("customer_id_fk")
                             + "---------------------------------------"); // FINISH
                         }
 
-                        System.out.println("Vehicle ID updated!");
+                        System.out.println("recall status updated!");
                         s.close();
                         con.close();
                     }
@@ -536,8 +537,9 @@ public class AlsetMethods {
                         System.out.println();
         
                         while(answer.next()){
-                            System.out.println( "Card number: " + answer.getString("card_number") + " \nExpiration: " + answer.getString("expiration") 
-                            + " \nZip: " + answer.getString("zip") + " \nSecuirty Code: " + answer.getString("security_code") + " \n" 
+                            System.out.println("Vehicle ID: " + answer.getString("vehicle_id") + " \nVehicle sales: " + answer.getString("sales") 
+                            + " \nModel ID: " + answer.getString("model_id_fk") + " \nMaintenance Status: " + answer.getString("maintenance") 
+                            + " \nRecall status: " + answer.getString("recall_status") + " \nCustomer ID: " + answer.getString("customer_id_fk")
                             + "---------------------------------------"); // FINISH
                         }
 
@@ -564,11 +566,11 @@ public class AlsetMethods {
                         System.out.println();
         
                         while(answer.next()){
-                            System.out.println( "Card number: " + answer.getString("card_number") + " \nExpiration: " + answer.getString("expiration") 
-                            + " \nZip: " + answer.getString("zip") + " \nSecuirty Code: " + answer.getString("security_code") + " \n" 
+                            System.out.println("Vehicle ID: " + answer.getString("vehicle_id") + " \nVehicle sales: " + answer.getString("sales") 
+                            + " \nModel ID: " + answer.getString("model_id_fk") + " \nMaintenance Status: " + answer.getString("maintenance") 
+                            + " \nRecall status: " + answer.getString("recall_status") + " \nCustomer ID: " + answer.getString("customer_id_fk")
                             + "---------------------------------------"); // FINISH
                         }
-
                         System.out.println("Sales updated!");
                         s.close();
                         con.close();
@@ -1358,5 +1360,67 @@ public class AlsetMethods {
                 break;
             }
         }while(run1 == 0);
+    }
+//----------------------------------------------------------------------------------------------------------------
+    public void issue_recall(){
+        String p = "";
+        ResultSet answer;
+        Scanner myScanner = new Scanner(System.in);
+        try (
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Statement s=con.createStatement();
+            ) {
+                System.out.print("Input the model ID for recall: ");
+                String mID = myScanner.next();
+                System.out.print("Input the year of model: ");
+                String newM = myScanner.next();
+                p = "update vehicle set recall_status = " + 1 + " where in " + newM + " = (select yearmodel from vehicle_model where model_id = " + mID + ")";
+                answer = s.executeQuery(p);
+                System.out.println();
+
+                while(answer.next()){
+                    System.out.println( "Repair number: " + answer.getString("repair_number") + " \nTotal cost: " + answer.getString("total_cost") 
+                    + " \nVehicle ID: " + answer.getString("vehicle_id_fk") + " \nLocation ID: " + answer.getString("location_id") + " \nDate of repair: " + answer.getString("date_of_repair") 
+                    + " \nPrice ID: " + answer.getString("price_id_fk")
+                    + "---------------------------------------"); // FINISH
+                }
+
+                System.out.println("recall status updated!");
+                s.close();
+                con.close();
+            }
+            catch (Exception sqle){
+                System.out.println(sqle.toString());
+            }
+    }
+    public void issue_maintenance(){
+        String p = "";
+        ResultSet answer;
+        Scanner myScanner = new Scanner(System.in);
+        try (
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Statement s=con.createStatement();
+            ) {
+                System.out.print("Input the vehicle ID for maintenance: ");
+                String vID = myScanner.next();
+                p = "update vehicle set maintenance = " + 1 + " where vehicle_id = " + vID ;
+
+                answer = s.executeQuery(p);
+                System.out.println();
+
+                while(answer.next()){
+                    System.out.println( "Repair number: " + answer.getString("repair_number") + " \nTotal cost: " + answer.getString("total_cost") 
+                    + " \nVehicle ID: " + answer.getString("vehicle_id_fk") + " \nLocation ID: " + answer.getString("location_id") + " \nDate of repair: " + answer.getString("date_of_repair") 
+                    + " \nPrice ID: " + answer.getString("price_id_fk")
+                    + "---------------------------------------"); // FINISH
+                }
+
+                System.out.println("recall status updated!");
+                s.close();
+                con.close();
+            }
+            catch (Exception sqle){
+                System.out.println(sqle.toString());
+            }
     }
 }
