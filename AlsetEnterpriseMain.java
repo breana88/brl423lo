@@ -158,7 +158,6 @@ public class AlsetEnterpriseMain {
                  a.logOn(userID, password); //user is stuck in log on until log on is complete
                  //when user is logged in, they can view the menu and make actions
                  do{
-                    //store manager menu here
                      System.out.println("Hello Product Manager! What can we help you with?\n" 
                           + "1: View all customers \n" //view cards per customer inside 
                           + "3: View prices \n"

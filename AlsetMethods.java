@@ -2,13 +2,13 @@ import java.io.*;
 import java.sql.*;
 import java.util.Scanner;
 
+
 public class AlsetMethods {
 
     public void logOn(String userID, String password){
 
         try (
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",
-            userID, password);
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",userID, password);
             Statement s=con.createStatement();) {
         }catch (Exception sqle){
             System.out.println(sqle.toString());
