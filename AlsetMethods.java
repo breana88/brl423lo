@@ -1,17 +1,20 @@
 import java.io.*;
 import java.sql.*;
 import java.util.Scanner;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class AlsetMethods {
 
     public void logOn(String userID, String password){
-
+        String driverName="oracle.jdbc.OracleDriver";
+        Class.forname(driverName);
         try (
+            //Connection con = DriverManager.getConnection("jdbc:oracle:thin:@//edgar1.cse.lehigh.edu:1521:cse241/orcl",userID, password);
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",userID, password);
             Statement s=con.createStatement();) {
         }catch (Exception sqle){
-            System.out.println(sqle.toString());
+            System.out.println(sqle.toString() + "\n");
             Scanner myScanner = new Scanner(System.in);
             String id;
             String pass;
@@ -513,6 +516,7 @@ public class AlsetMethods {
                             + " \nRecall status: " + answer.getString("recall_status") + " \nCustomer ID: " + answer.getString("customer_id_fk")
                             + "---------------------------------------"); // FINISH
                         }
+                         
 
                         System.out.println("recall status updated!");
                         s.close();
@@ -1364,7 +1368,9 @@ public class AlsetMethods {
 //----------------------------------------------------------------------------------------------------------------
     public void issue_recall(){
         String p = "";
+        String q = "";
         ResultSet answer;
+        ResultSet answer2;
         Scanner myScanner = new Scanner(System.in);
         try (
                 Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
@@ -1384,6 +1390,14 @@ public class AlsetMethods {
                     + " \nPrice ID: " + answer.getString("price_id_fk")
                     + "---------------------------------------"); // FINISH
                 }
+                
+                q = "select email from customer where in customer_id = (select customer_id_fk from vehicle where model_id_fk = " + mID + ") ";
+                answer2 = s.executeQuery(q);
+                System.out.println();
+
+                while(answer.next()){
+                    System.out.println("Email has been sent to " + answer2.getString("email") + "\n");
+                }
 
                 System.out.println("recall status updated!");
                 s.close();
@@ -1395,6 +1409,8 @@ public class AlsetMethods {
     }
     public void issue_maintenance(){
         String p = "";
+        String q ="";
+        ResultSet answer2;
         ResultSet answer;
         Scanner myScanner = new Scanner(System.in);
         try (
@@ -1414,6 +1430,12 @@ public class AlsetMethods {
                     + " \nPrice ID: " + answer.getString("price_id_fk")
                     + "---------------------------------------"); // FINISH
                 }
+                q = "select email from customer where in customer_id = (select customer_id_fk from vehicle where vehicle_id = " + vID + ") ";
+                answer2 = s.executeQuery(q);
+                System.out.println();
+
+                while(answer.next()){
+                    System.out.println("Email has been sent to " + answer2.getString("email") + "\n");
 
                 System.out.println("recall status updated!");
                 s.close();
