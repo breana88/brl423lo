@@ -1,4 +1,5 @@
 import java.io.*;
+import java.net.PasswordAuthentication;
 import java.sql.*;
 import java.util.Scanner;
 import java.sql.Connection;
@@ -7,7 +8,6 @@ import java.sql.DriverManager;
 public class AlsetMethods {
 
     public void logOn(String userID, String password){
-        //Connection conn =  null;
         try(Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",userID, password);
             Statement s=conn.createStatement();)
         {
@@ -32,14 +32,13 @@ public class AlsetMethods {
         
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewCustomer(){
+    public void viewCustomer(String userID, String password){
         String p = "";
         ResultSet answer;
-        
-        try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
-                Statement s=con.createStatement();
-            ) {
+
+        try(Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",userID, password);
+                Statement s=con.createStatement();)
+            { 
                 Scanner myScanner = new Scanner(System.in);
                 System.out.print("Input the email affiliated to your account: ");
                 String emailForSearch = myScanner.next();
@@ -61,12 +60,12 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void viewAllCustomer(){
+    public void viewAllCustomer(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from customer";   
@@ -86,7 +85,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void editCustomer(){
+    public void editCustomer(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -111,7 +110,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //first name
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the email affiliated to your account: ");
@@ -139,7 +138,7 @@ public class AlsetMethods {
                 break;
                 case 2: //last name
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the email affiliated to your account: ");
@@ -167,7 +166,7 @@ public class AlsetMethods {
                 break;
                 case 3: //email
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the email affiliated to your account: ");
@@ -195,7 +194,7 @@ public class AlsetMethods {
                 break;
                 case 4: //address
                     try (
-                            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                             Statement s=con.createStatement();
                         ) {
                             System.out.print("Input the email affiliated to your account: ");
@@ -225,12 +224,12 @@ public class AlsetMethods {
         }while(run1 == 0);
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewCard(){
+    public void viewCard(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 Scanner myScanner = new Scanner(System.in);
@@ -254,12 +253,12 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void viewAllCard(){
+    public void viewAllCard(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from card";   
@@ -279,7 +278,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void editCard(){
+    public void editCard(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -304,7 +303,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //card num
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the email affiliated to your account: ");
@@ -332,7 +331,7 @@ public class AlsetMethods {
                 break;
                 case 2: //expiration
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the email affiliated to your account: ");
@@ -360,7 +359,7 @@ public class AlsetMethods {
                 break;
                 case 3: //security code
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the email affiliated to your account: ");
@@ -388,7 +387,7 @@ public class AlsetMethods {
                 break;
                 case 4: //zip
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the email affiliated to your account: ");
@@ -418,12 +417,12 @@ public class AlsetMethods {
         }while(run1 == 0);
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewVehicle(){
+    public void viewVehicle (String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 Scanner myScanner = new Scanner(System.in);
@@ -447,12 +446,12 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void viewAllVehicle(){
+    public void viewAllVehicle(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from vehicle";   
@@ -473,7 +472,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void editVehicle(){
+    public void editVehicle(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -497,7 +496,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //recall status
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the vehicle ID: ");
@@ -527,7 +526,7 @@ public class AlsetMethods {
                 break;
                 case 2: //maintenance
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the vehicle ID: ");
@@ -556,7 +555,7 @@ public class AlsetMethods {
                 break;
                 case 3: //sales
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the vehicle ID: ");
@@ -586,12 +585,12 @@ public class AlsetMethods {
         }while(run1 == 0);
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewModel(){
+    public void viewModel(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 Scanner myScanner = new Scanner(System.in);
@@ -615,12 +614,12 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void viewAllModel(){
+    public void viewAllModel(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from vehicle_model";   
@@ -642,7 +641,7 @@ public class AlsetMethods {
             }
 
     }
-    public void editModel(){
+    public void editModel(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -667,7 +666,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //model description
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the model ID: ");
@@ -696,7 +695,7 @@ public class AlsetMethods {
                 break;
                 case 2: //terrain
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the model ID: ");
@@ -725,7 +724,7 @@ public class AlsetMethods {
                 break;
                 case 3: //options
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the model ID: ");
@@ -754,7 +753,7 @@ public class AlsetMethods {
                 break;
                 case 4: //year
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the model ID: ");
@@ -785,12 +784,12 @@ public class AlsetMethods {
         }while(run1 == 0);
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewAllServiceLocations(){
+    public void viewAllServiceLocations(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from service_location";   
@@ -812,7 +811,7 @@ public class AlsetMethods {
             }
 
     }
-    public void editServiceLocations(){
+    public void editServiceLocations(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -837,7 +836,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //models handled
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the location ID: ");
@@ -866,7 +865,7 @@ public class AlsetMethods {
                 break;
                 case 2: //recalls
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the location ID: ");
@@ -895,7 +894,7 @@ public class AlsetMethods {
                 break;
                 case 3: //repairs offered
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the location ID: ");
@@ -924,7 +923,7 @@ public class AlsetMethods {
                 break;
                 case 4: //vehicles for delivery
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the location ID: ");
@@ -956,13 +955,13 @@ public class AlsetMethods {
 
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewAllShowroom(){
+    public void viewAllShowroom(String userID, String password){
 
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from service_location";   
@@ -982,7 +981,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void editShowroom(){
+    public void editShowroom(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -1005,7 +1004,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //vehicle status
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the location ID: ");
@@ -1033,7 +1032,7 @@ public class AlsetMethods {
                 break;
                 case 2: //recalls
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input the location ID: ");
@@ -1064,12 +1063,12 @@ public class AlsetMethods {
 
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewPrice(){
+    public void viewPrice(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 Scanner myScanner = new Scanner(System.in);
@@ -1092,12 +1091,12 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void viewAllPrice(){
+    public void viewAllPrice(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from prices";   
@@ -1117,7 +1116,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void editPrice(){
+    public void editPrice(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -1141,7 +1140,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //price
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input price id: ");
@@ -1169,7 +1168,7 @@ public class AlsetMethods {
                 break;
                 case 2: //discount
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input price id: ");
@@ -1197,7 +1196,7 @@ public class AlsetMethods {
                 break;
                 case 3: //bundle
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input price id: ");
@@ -1227,12 +1226,12 @@ public class AlsetMethods {
         }while(run1 == 0);
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewRepairs(){
+    public void viewRepairs(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 Scanner myScanner = new Scanner(System.in);
@@ -1256,12 +1255,12 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void viewAllRepairs(){
+    public void viewAllRepairs(String userID, String password){
         String p = "";
         ResultSet answer;
         
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 p = "select * from repairs";   
@@ -1282,7 +1281,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void editRepairs(){
+    public void editRepairs(String userID, String password){
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -1305,7 +1304,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //total 
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input repair number: ");
@@ -1334,7 +1333,7 @@ public class AlsetMethods {
                 break;
                 case 2: //date of service
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         System.out.print("Input repair number: ");
@@ -1365,14 +1364,14 @@ public class AlsetMethods {
         }while(run1 == 0);
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void issue_recall(){
+    public void issue_recall(String userID, String password){
         String p = "";
         String q = "";
         ResultSet answer;
         ResultSet answer2;
         Scanner myScanner = new Scanner(System.in);
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 System.out.print("Input the model ID for recall: ");
@@ -1406,14 +1405,14 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void issue_maintenance(){
+    public void issue_maintenance(String userID, String password){
         String p = "";
         String q ="";
         ResultSet answer2;
         ResultSet answer;
         Scanner myScanner = new Scanner(System.in);
         try (
-                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                 Statement s=con.createStatement();
             ) {
                 System.out.print("Input the vehicle ID for maintenance: ");
@@ -1443,7 +1442,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void make_purchase(){
+    public void make_purchase(String userID, String password){
         Scanner myScanner = new Scanner(System.in);
         int run1 = 0;
         ResultSet answer;
@@ -1452,7 +1451,7 @@ public class AlsetMethods {
 
         do{
             System.out.println("Which of the following models are you purchasing?: ");
-            viewAllModel();
+            viewAllModel(userID, password);
             System.out.println("Press 5 to exit");
             while (!myScanner.hasNextInt()) {
                 String input = myScanner.next();
@@ -1466,7 +1465,7 @@ public class AlsetMethods {
             switch(c1){
                 case 1: //total 
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         int t = 0;
@@ -1512,7 +1511,7 @@ public class AlsetMethods {
                 break;
                 case 2: 
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         int t = 0;
@@ -1550,7 +1549,7 @@ public class AlsetMethods {
                 break;
                 case 3: //total 
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         int t = 0;
@@ -1596,7 +1595,7 @@ public class AlsetMethods {
                 break;
                 case 4: //total 
                     try (
-                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
                         Statement s=con.createStatement();
                     ) {
                         int t = 0;

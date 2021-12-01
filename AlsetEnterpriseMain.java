@@ -62,28 +62,28 @@ public class AlsetEnterpriseMain {
                         }
                         switch(c1){
                             case 1:
-                                a.viewCustomer();
+                                a.viewCustomer(userID, password);
                             break;
                             case 2:
-                                a.editCustomer();
+                                a.editCustomer(userID, password);
                             break;
                             case 3:
-                                a.viewCard();
+                                a.viewCard(userID, password);
                             break;
                             case 4:
-                                a.editCard();
+                                a.editCard(userID, password);
                             break;
                             case 5:
-                                a.viewVehicle();
+                                a.viewVehicle(userID, password);
                             break;
                             case 6:
-                                a.viewAllServiceLocations();
+                                a.viewAllServiceLocations(userID, password);
                             break;
                             case 7:
-                                a.viewAllModel();
+                                a.viewAllModel(userID, password);
                             break;
                             case 8:
-                                a.make_purchase();
+                                a.make_purchase(userID, password);
                             break;
                         }
                     }while(run1 == 0);
@@ -121,34 +121,34 @@ public class AlsetEnterpriseMain {
                      }
                      switch(c2){
                          case 1:
-                            a.viewAllCustomer();
+                            a.viewAllCustomer(userID, password);
                          break;
                          case 2:
-                            a.viewAllPrice();
+                            a.viewAllPrice(userID, password);
                          break;
                          case 3:
-                            a.editPrice();
+                            a.editPrice(userID, password);
                          break;
                          case 4:
-                            a.viewAllRepairs();
+                            a.viewAllRepairs(userID, password);
                          break;
                          case 5:
-                            a.editRepairs();
+                            a.editRepairs(userID, password);
                          break;
                          case 6:
-                            a.viewAllModel();
+                            a.viewAllModel(userID, password);
                          break;
                          case 7:
-                            a.viewAllShowroom();
+                            a.viewAllShowroom(userID, password);
                          break;
                          case 8:
-                            a.editShowroom();
+                            a.editShowroom(userID, password);
                          break;
                          case 9:
-                            a.viewAllServiceLocations();
+                            a.viewAllServiceLocations(userID, password);
                          break;
                          case 10:
-                            a.editServiceLocations();
+                            a.editServiceLocations(userID, password);
                          break;
                      }
                  }while(run2 == 0);
@@ -185,37 +185,37 @@ public class AlsetEnterpriseMain {
                      }
                      switch(c3){
                         case 1:
-                            a.viewAllCustomer();
+                            a.viewAllCustomer(userID, password);
                         break;
                         case 2:
-                            a.viewAllPrice();
+                            a.viewAllPrice(userID, password);
                         break;
                         case 3:
-                            a.editPrice();
+                            a.editPrice(userID, password);
                         break;
                         case 4:
-                            a.viewAllRepairs();
+                            a.viewAllRepairs(userID, password);
                         break;
                         case 5:
-                            a.editRepairs();
+                            a.editRepairs(userID, password);
                         break;
                         case 6:
-                            a.viewAllModel();
+                            a.viewAllModel(userID, password);
                         break;
                         case 7:
-                            a.editModel();
+                            a.editModel(userID, password);
                         break;
                          case 8:
-                            a.viewAllShowroom();
+                            a.viewAllShowroom(userID, password);
                          break;
                          case 9:
-                            a.viewAllServiceLocations();
+                            a.viewAllServiceLocations(userID, password);
                          break;
                          case 10:
-                            a.issue_maintenance();
+                            a.issue_maintenance(userID, password);
                          break;
                          case 11:
-                            a.issue_recall();
+                            a.issue_recall(userID, password);
                          break;
                      }
                  }while(run3 == 0);
