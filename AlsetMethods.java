@@ -32,7 +32,7 @@ public class AlsetMethods {
         
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewCustomer(String userID, String password){
+    public void viewCustomer(String userID, String password){ //prints nothing
         String p = "";
         ResultSet answer;
 
@@ -42,25 +42,24 @@ public class AlsetMethods {
                 Scanner myScanner = new Scanner(System.in);
                 System.out.print("Input the email affiliated to your account: ");
                 String emailForSearch = myScanner.next();
-                p = "select firstname, lastname, email, address from customer where email like '%" + emailForSearch + "%'";   
+                p = "select * from customer where email = '%" + emailForSearch + "%'";   
 
                 answer = s.executeQuery(p);
                 System.out.println();
 
                 while(answer.next()){
-                    System.out.println(answer.getString("firstname") + " " + answer.getString("lastname") 
+                    System.out.println("User ID: " + answer.getString("customer_id") + " \n" +answer.getString("firstname") + " " + answer.getString("lastname") 
                     + " \n" + answer.getString("email") + " \n" + answer.getString("address") + " \n" 
                     + "---------------------------------------"); // FINISH
                 }
                 s.close();
                 con.close();
-                myScanner.close();
             }
             catch (Exception sqle){
                 System.out.println(sqle.toString());
             }
     }
-    public void viewAllCustomer(String userID, String password){
+    public void viewAllCustomer(String userID, String password){ //good
         String p = "";
         ResultSet answer;
         
@@ -76,7 +75,7 @@ public class AlsetMethods {
                 while(answer.next()){
                     System.out.println("Customer ID:  " + answer.getString("customer_ID") + " \n" + answer.getString("firstname") + " " + answer.getString("lastname") 
                     + " \n" + answer.getString("email") + " \n" + answer.getString("address") + " \nCardNumber: " + answer.getString("card_number_fk")
-                    + "---------------------------------------"); // FINISH
+                    + "\n---------------------------------------"); // FINISH
                 }
                 s.close();
                 con.close();
@@ -85,7 +84,7 @@ public class AlsetMethods {
                 System.out.println(sqle.toString());
             }
     }
-    public void editCustomer(String userID, String password){
+    public void editCustomer(String userID, String password){ //good
         int run1 = 0;
         String p = "";
         ResultSet answer;
@@ -224,7 +223,7 @@ public class AlsetMethods {
         }while(run1 == 0);
     }
 //----------------------------------------------------------------------------------------------------------------
-    public void viewCard(String userID, String password){
+    public void viewCard(String userID, String password){ //prints nothing
         String p = "";
         ResultSet answer;
         
@@ -235,7 +234,7 @@ public class AlsetMethods {
                 Scanner myScanner = new Scanner(System.in);
                 System.out.print("Input the email affiliated to your account: ");
                 String emailForSearch = myScanner.next();
-                p = "select * from card where card_number in (select card_number_fk from customer where email = '%" + emailForSearch + "%'";
+                p = "select * from card where card_number = (select card_number_fk from customer where email = '%" + emailForSearch + "%')";
   
                 answer = s.executeQuery(p);
                 System.out.println();
@@ -247,7 +246,6 @@ public class AlsetMethods {
                 }
                 s.close();  
                 con.close();
-                myScanner.close();
             }
             catch (Exception sqle){
                 System.out.println(sqle.toString());
@@ -310,7 +308,7 @@ public class AlsetMethods {
                         String currE = myScanner.next();
                         System.out.print("Input the UPDATED card number: ");
                         String newCN = myScanner.next();
-                        p = "update card set card_number = " + newCN + " where in card_number = (select card_number_fk from customer where email = '%" + currE + "%'";
+                        p = "update card set card_number = " + newCN + " where card_number = (select card_number_fk from customer where email = '%" + currE  + "%')";
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -338,7 +336,7 @@ public class AlsetMethods {
                         String currE = myScanner.next();
                         System.out.print("Input the UPDATED expiration date: ");
                         String newEX = myScanner.next();
-                        p = "update card set expiration = " + newEX + " where in card_number = (select card_number_fk from customer where email = '%" + currE + "%";
+                        p = "update card set expiration = " + newEX + " where card_number = (select card_number_fk from customer where email = '%" + currE  + "%')";
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -366,7 +364,7 @@ public class AlsetMethods {
                         String currE = myScanner.next();
                         System.out.print("Input the UPDATED security code: ");
                         String newSC = myScanner.next();
-                        p = "update card set security_code = " + newSC + " where in card_number = (select card_number_fk from customer where email = '%" + currE + "%";
+                        p = "update card set security_code = " + newSC + " where card_number = (select card_number_fk from customer where email = '%" + currE  + "%')";
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -394,7 +392,7 @@ public class AlsetMethods {
                         String currE = myScanner.next();
                         System.out.print("Input the UPDATED zip code: ");
                         String newZC = myScanner.next();
-                        p = "update card set zip = " + newZC + " where in card_number = (select card_number_fk from customer where email = '%" + currE + "%";
+                        p = "update card set zip = " + newZC + " where card_number = (select card_number_fk from customer where email = '%" + currE + "%')";
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -428,7 +426,7 @@ public class AlsetMethods {
                 Scanner myScanner = new Scanner(System.in);
                 System.out.print("Input the email affiliated to your account: ");
                 String emailForSearch = myScanner.next();
-                p = "select * from vehicle where in customer_id_fk = (select customer_id from customer where email = '%" + emailForSearch + "%";   
+                p = "select * from vehicle where customer_id_fk = (select customer_id from customer where email = '%" + emailForSearch + "%')";   
 
                 answer = s.executeQuery(p);
                 System.out.println();
@@ -504,7 +502,7 @@ public class AlsetMethods {
                         System.out.print("Input the UPDATED recall status: ");
                         String newRS = myScanner.next();
                         p = "update vehicle set recall_status = '%" + newRS + "%' where vehicle_id = " + vID;
-        
+                        
                         answer = s.executeQuery(p);
                         System.out.println();
         
@@ -1147,7 +1145,7 @@ public class AlsetMethods {
                         String pID = myScanner.next();
                         System.out.print("Input the UPDATED price: ");
                         String newP = myScanner.next();
-                        p = "update prices set price = " + newP + " where in price_id = " + pID;
+                        p = "update prices set price = " + newP + " where price_id = " + pID;
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -1175,7 +1173,7 @@ public class AlsetMethods {
                         String pID = myScanner.next();
                         System.out.print("Input the UPDATED discount status: ");
                         String newP = myScanner.next();
-                        p = "update prices set discount = " + newP + " where in price_id = " + pID;
+                        p = "update prices set discount = " + newP + " where price_id = " + pID;
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -1203,7 +1201,7 @@ public class AlsetMethods {
                         String pID = myScanner.next();
                         System.out.print("Input the UPDATED bundle status: ");
                         String newP = myScanner.next();
-                        p = "update prices set available_for_bundle = " + newP + " where in price_id = " + pID;
+                        p = "update prices set available_for_bundle = " + newP + " where price_id = " + pID;
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -1311,7 +1309,7 @@ public class AlsetMethods {
                         String RN = myScanner.next();
                         System.out.print("Input the UPDATED total: ");
                         String newT = myScanner.next();
-                        p = "update repairs set total_cost = " + newT + " where in repair_number = " + RN;
+                        p = "update repairs set total_cost = " + newT + " where repair_number = " + RN;
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -1340,7 +1338,7 @@ public class AlsetMethods {
                         String RN = myScanner.next();
                         System.out.print("Input the UPDATED date of service: ");
                         String newT = myScanner.next();
-                        p = "update repairs set date_of_repair = " + newT + " where in repair_number = " + RN;
+                        p = "update repairs set date_of_repair = " + newT + " where repair_number = " + RN;
         
                         answer = s.executeQuery(p);
                         System.out.println();
@@ -1378,7 +1376,7 @@ public class AlsetMethods {
                 String mID = myScanner.next();
                 System.out.print("Input the year of model: ");
                 String newM = myScanner.next();
-                p = "update vehicle set recall_status = " + 1 + " where in " + newM + " = (select yearmodel from vehicle_model where model_id = " + mID + ")";
+                p = "update vehicle set recall_status = " + 1 + " where" + newM + " = (select yearmodel from vehicle_model where model_id = " + mID + ")";
                 answer = s.executeQuery(p);
                 System.out.println();
 
@@ -1389,7 +1387,7 @@ public class AlsetMethods {
                     + "---------------------------------------"); // FINISH
                 }
                 
-                q = "select email from customer where in customer_id = (select customer_id_fk from vehicle where model_id_fk = " + mID + ") ";
+                q = "select email from customer where customer_id = (select customer_id_fk from vehicle where model_id_fk = " + mID + ") ";
                 answer2 = s.executeQuery(q);
                 System.out.println();
 
@@ -1428,7 +1426,7 @@ public class AlsetMethods {
                     + " \nPrice ID: " + answer.getString("price_id_fk")
                     + "---------------------------------------"); // FINISH
                 }
-                q = "select email from customer where in customer_id = (select customer_id_fk from vehicle where vehicle_id = " + vID + ") ";
+                q = "select email from customer where customer_id = (select customer_id_fk from vehicle where vehicle_id = " + vID + ") ";
                 answer2 = s.executeQuery(q);
                 System.out.println();
 
