@@ -48,14 +48,15 @@ public class AlsetEnterpriseMain {
                              + "4: Edit wallet \n"
                              + "5: View your vehicles \n"
                              + "6: View service locations \n"
-                             + "7: View all Alset models \n" //inside add option to see model options as well
-                             + "8: Exit \n" );
+                             + "7: View all Alset models \n" 
+                             + "8: Make a purchase \n"
+                             + "9: Exit \n" );
                         while (!s.hasNextInt()) {
                             String input = s.next();
-                            System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-8*");
+                            System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-9*");
                         }
                         int c1 = s.nextInt();
-                        if(c1 == 8){
+                        if(c1 == 9){
                             run1 = 1;
                             break;
                         }
@@ -80,6 +81,9 @@ public class AlsetEnterpriseMain {
                             break;
                             case 7:
                                 a.viewAllModel();
+                            break;
+                            case 8:
+                                a.make_purchase();
                             break;
                         }
                     }while(run1 == 0);

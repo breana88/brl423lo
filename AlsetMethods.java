@@ -7,13 +7,12 @@ import java.sql.DriverManager;
 public class AlsetMethods {
 
     public void logOn(String userID, String password){
-        String driverName="oracle.jdbc.OracleDriver";
-        Class.forname(driverName);
-        try (
-            //Connection con = DriverManager.getConnection("jdbc:oracle:thin:@//edgar1.cse.lehigh.edu:1521:cse241/orcl",userID, password);
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",userID, password);
-            Statement s=con.createStatement();) {
-        }catch (Exception sqle){
+        //Connection conn =  null;
+        try(Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241",userID, password);
+            Statement s=conn.createStatement();)
+        {
+           
+        } catch (Exception sqle){
             System.out.println(sqle.toString() + "\n");
             Scanner myScanner = new Scanner(System.in);
             String id;
@@ -1436,13 +1435,213 @@ public class AlsetMethods {
 
                 while(answer.next()){
                     System.out.println("Email has been sent to " + answer2.getString("email") + "\n");
-
+                }
                 System.out.println("recall status updated!");
                 s.close();
                 con.close();
-            }
-            catch (Exception sqle){
+            }catch (Exception sqle){
                 System.out.println(sqle.toString());
             }
+    }
+    public void make_purchase(){
+        Scanner myScanner = new Scanner(System.in);
+        int run1 = 0;
+        ResultSet answer;
+        String p ="";
+        String q ="";
+
+        do{
+            System.out.println("Which of the following models are you purchasing?: ");
+            viewAllModel();
+            System.out.println("Press 5 to exit");
+            while (!myScanner.hasNextInt()) {
+                String input = myScanner.next();
+                System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-5*");
+            }
+            int c1 = myScanner.nextInt();
+            if(c1 == 5){
+                run1 = 1;
+                break;
+            }
+            switch(c1){
+                case 1: //total 
+                    try (
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Statement s=con.createStatement();
+                    ) {
+                        int t = 0;
+                        p = "select model_desc from vehicle_model where model_id = " + c1;
+                        q = "select options from vehicle_model where model_id = " + c1;
+                        answer = s.executeQuery(p);
+                        System.out.println("The base cost of " + answer.getString("model_desc") + " is $50,000");
+                        answer = s.executeQuery(q);
+                        System.out.println("With the availble options of: " + answer.getString("options"));
+                        
+                        do{
+                            System.out.println("Would you like to purchase option(s)?"
+                            + "1: Crater Descent \n"
+                            + "2: Relaunch in Space \n"
+                            + "3: Bundle \n"
+                            + "4: None\n" );
+                            while (!myScanner.hasNextInt()) {
+                                String input = myScanner.next();
+                                System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-4*");
+                            }
+                            int c2 = myScanner.nextInt();
+                            switch(c2){
+                                case 1:
+                                System.out.println("Purchase total is: $54,000");
+                                break;
+                                case 2:
+                                System.out.println("Purchase total is: $53,000");
+                                break;
+                                case 3:
+                                System.out.println("Purchase total is: $55,950");
+                                break;
+                                case 4:
+                                System.out.println("Purchase total is: $50,000");
+                                break;
+                            }
+                        }while(t == 0);
+                        s.close();
+                        con.close();
+                    }
+                    catch (Exception sqle){
+                        System.out.println(sqle.toString());
+                    }
+                break;
+                case 2: 
+                    try (
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Statement s=con.createStatement();
+                    ) {
+                        int t = 0;
+                        p = "select model_desc from vehicle_model where model_id = " + c1;
+                        q = "select options from vehicle_model where model_id = " + c1;
+                        answer = s.executeQuery(p);
+                        System.out.println("The base cost of " + answer.getString("model_desc") + " is $60,000");
+                        answer = s.executeQuery(q);
+                        System.out.println("With the availble options of: " + answer.getString("options"));
+                        
+                        do{
+                            System.out.println("Would you like to purchase option(s)?"
+                            + "1: Ejector seats \n"
+                            + "2: None\n" );
+                            while (!myScanner.hasNextInt()) {
+                                String input = myScanner.next();
+                                System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-2*");
+                            }
+                            int c2 = myScanner.nextInt();
+                            switch(c2){
+                                case 1:
+                                System.out.println("Purchase total is: $62,000");
+                                break;
+                                case 2:
+                                System.out.println("Purchase total is: $60,000");
+                                break;
+                            }
+                        }while(t == 0);
+                        s.close();
+                        con.close();
+                    }
+                    catch (Exception sqle){
+                        System.out.println(sqle.toString());
+                    }
+                break;
+                case 3: //total 
+                    try (
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Statement s=con.createStatement();
+                    ) {
+                        int t = 0;
+                        p = "select model_desc from vehicle_model where model_id = " + c1;
+                        q = "select options from vehicle_model where model_id = " + c1;
+                        answer = s.executeQuery(p);
+                        System.out.println("The base cost of " + answer.getString("model_desc") + " is $70,000");
+                        answer = s.executeQuery(q);
+                        System.out.println("With the availble options of: " + answer.getString("options"));
+                        
+                        do{
+                            System.out.println("Would you like to purchase option(s)?"
+                            + "1: Crater Descent \n"
+                            + "2: Relaunch in Space \n"
+                            + "3: Bundle \n"
+                            + "4: None\n" );
+                            while (!myScanner.hasNextInt()) {
+                                String input = myScanner.next();
+                                System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-4*");
+                            }
+                            int c2 = myScanner.nextInt();
+                            switch(c2){
+                                case 1:
+                                System.out.println("Purchase total is: $74,000");
+                                break;
+                                case 2:
+                                System.out.println("Purchase total is: $73,000");
+                                break;
+                                case 3:
+                                System.out.println("Purchase total is: $75,950");
+                                break;
+                                case 4:
+                                System.out.println("Purchase total is: $70,000");
+                                break;
+                            }
+                        }while(t == 0);
+                        s.close();
+                        con.close();
+                    }
+                    catch (Exception sqle){
+                        System.out.println(sqle.toString());
+                    }
+                break;
+                case 4: //total 
+                    try (
+                        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241");
+                        Statement s=con.createStatement();
+                    ) {
+                        int t = 0;
+                        p = "select model_desc from vehicle_model where model_id = " + c1;
+                        q = "select options from vehicle_model where model_id = " + c1;
+                        answer = s.executeQuery(p);
+                        System.out.println("The base cost of " + answer.getString("model_desc") + " is $80,000");
+                        answer = s.executeQuery(q);
+                        System.out.println("With the availble options of: " + answer.getString("options"));
+                        
+                        do{
+                            System.out.println("Would you like to purchase option(s)?"
+                            + "1: Ejector Seats \n"
+                            + "2: Auto pilot\n"
+                            + "3: Bundle \n"
+                            + "4: None\n" );
+                            while (!myScanner.hasNextInt()) {
+                                String input = myScanner.next();
+                                System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-4*");
+                            }
+                            int c2 = myScanner.nextInt();
+                            switch(c2){
+                                case 1:
+                                System.out.println("Purchase total is: $82,000");
+                                break;
+                                case 2:
+                                System.out.println("Purchase total is: $81,000");
+                                break;
+                                case 3:
+                                System.out.println("Purchase total is: $82,550");
+                                break;
+                                case 4:
+                                System.out.println("Purchase total is: $80,000");
+                                break;
+                            }
+                        }while(t == 0);
+                        s.close();
+                        con.close();
+                    }
+                    catch (Exception sqle){
+                        System.out.println(sqle.toString());
+                    }
+                break;
+            }
+        }while(run1 == 0);
+        
     }
 }
