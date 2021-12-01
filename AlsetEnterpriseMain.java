@@ -18,7 +18,7 @@ public class AlsetEnterpriseMain {
             System.out.println("Which user type are you?\n" 
                              + "1: Valued Alset Customer \n" 
                              + "2: Alset Store Manager \n" 
-                             + "3: Alster Product Manager \n"
+                             + "3: Alset Product Manager \n"
                              + "4: Exit Program");
             while (!s.hasNextInt()) {
                 String input = s.next();
