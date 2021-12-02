@@ -108,14 +108,15 @@ public class AlsetEnterpriseMain {
                           + "7: View Showroom information \n"
                           + "8: Edit Showroom information \n"
                           + "9: View service location information \n"
-                          + "10: Edit service location information \n" 
+                          + "10: Edit service location information \n"
+                          + "11: Register a new user \n" 
                           + "11: Exit \n" );
                      while (!s.hasNextInt()) {
                          String input = s.next();
                          System.out.println("INVALID INPUT\n*PLEASE ENTER A NUMBER 1-11*");
                      }
                      int c2 = s.nextInt();
-                     if(c2 == 11){
+                     if(c2 == 12){
                          run1 = 1;
                          break;
                      }
@@ -150,6 +151,9 @@ public class AlsetEnterpriseMain {
                          case 10:
                             a.editServiceLocations(userID, password);
                          break;
+                         case 11:
+                          a.addUser(userID, password);
+                        break;
                      }
                  }while(run2 == 0);
                     break;

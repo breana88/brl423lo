@@ -1495,4 +1495,40 @@ public class AlsetMethods {
         }while(run1 == 0);
         
     }
+    public void addUser(String userID, String password){
+        Scanner myScanner = new Scanner(System.in);
+        try (
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", userID, password);
+            Statement s=con.createStatement();
+        ) {
+            System.out.println("input user's ID: ");
+            String id = myScanner.next();
+            System.out.println("input user's first name: ");
+            String fn = myScanner.next();
+            System.out.println("input user's last name: ");
+            String ln = myScanner.next();
+            System.out.println("input user's email: ");
+            String email = myScanner.next();
+            System.out.println("input user's address: ");
+            String add = myScanner.next();
+            
+            System.out.println("input card number: ");
+            String cn = myScanner.next();
+            System.out.println("input card security code: ");
+            String sc = myScanner.next();
+            System.out.println("input card type: ");
+            String t = myScanner.next();
+            System.out.println("input card expiration ");
+            String exp = myScanner.next();
+            System.out.println("input card zip: ");
+            String z = myScanner.next();
+
+            s.executeUpdate("insert into card (card_number, security_code, card_type, expiration, security_code, zip) values (\'"+cn+"\', \'"+sc+"\', \'"+t+"\', \'"+exp+"\', \'"+z+"\')");
+            s.executeUpdate("insert into customer (customer_id, firstname, lastname, email, address, card_number_fk) values(\'"+id+"\',\'"+fn+"\',\'"+ln+"\',\'"+email+"\',\'"+add+"\', \'"+cn+"\')");
+           System.out.println("new user added");
+        }
+        catch (Exception sqle){
+            System.out.println(sqle.toString());
+        }
+    }
 }
