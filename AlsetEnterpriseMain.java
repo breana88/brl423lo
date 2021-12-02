@@ -164,11 +164,12 @@ public class AlsetEnterpriseMain {
                  do{
                      System.out.println("Hello Product Manager! What can we help you with?\n" 
                           + "1: View all customers \n" //view cards per customer inside 
-                          + "3: View prices \n"
-                          + "4: Edit prices \n" //edit prices if products are changed
-                          + "5: View repairs \n"
+                          + "2: View prices \n"
+                          + "3: Edit prices \n" //edit prices if products are changed
+                          + "4: View repairs \n"
+                          + "5: Edit repairs \n"
                           + "6: View all Alset models \n" //inside add option to see model options as well
-                          + "7: Edit Alset models"
+                          + "7: Edit Alset models\n"
                           + "8: View Showroom information \n"
                           + "9: View service location information \n"
                           + "10: Issue maintenance \n"
